@@ -9,8 +9,3 @@ End-to-end AI project optimizing demand forecasting, inventory, and routing for 
 - Optimization: PuLP, OR-Tools
 - Viz: Matplotlib, Seaborn
 
-## Phases
-[Link to phase folders]
-
-## Key Learnings
-[To be updated per phase]
