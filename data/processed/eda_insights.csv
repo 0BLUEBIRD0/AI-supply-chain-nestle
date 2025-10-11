@@ -1,0 +1,6 @@
+Metric,Value,Implication
+Overall Avg Monthly Sales,2427,Baseline for forecasting models
+Festival Uplift %,-0.3%,AI target: Predict spikes to avoid stockouts
+Monsoon Dip %,-8.0%,Optimize inventory buffers for Jul-Aug dips
+Urban vs. Rural Ratio,1.0x,Prioritize urban routing; rural efficiency gains
+Promo Lift %,110.8%,Dynamic promos could cut waste via better planning
