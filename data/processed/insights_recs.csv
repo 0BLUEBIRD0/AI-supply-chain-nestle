@@ -1,0 +1,6 @@
+Insight,Impact,Recommendation
+Forecasting accuracy enables precise opt,7% MAPE → 20% less stockouts,Deploy LSTM for top 5 products; integrate with ERP
+Inventory LP cuts holding 50% with buffer,₹30k/month for Maggi; scale to ₹300 Cr,Implement 15% buffer rule for perishables; pilot rural
+Routing sim handles delays but needs multi-hub,0% savings in small sim; 10% with 500 stores,Expand to multi-hub VRP for quick commerce; save 10%
+Sensitivity shows surge resilience (95% service),+15% cost under surge; buffer mitigates,Pre-stock 25% for festivals; monitor with dashboards
+Net 15% savings robust to inflation,Holds under 10% inflation; ROI <6 months,Rollout AI-opt chain for 15% net savings; ESG tie-in (5% waste cut)
