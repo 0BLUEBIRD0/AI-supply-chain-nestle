@@ -1,0 +1,5 @@
+Scenario,Cost (₹),Service (%),Cost Change (%)
+Inflation (+10% holding cost),33163.35,100.0,9.999999999999995
+Supply Delay (+20% shortage cost),30148.5,100.0,0.0
+Demand Surge (+20% forecast),36178.200000000004,100.0,20.000000000000014
+Data Gap (-10% forecast accuracy),37685.625,100.0,25.0
