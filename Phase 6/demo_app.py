@@ -17,7 +17,7 @@ base_demand = [7200, 6800, 5500, 6000, 8500, 9000]  # Sample from forecasts
 # Adjusted Demand
 demand = [d * (1 + demand_mult) for d in base_demand]
 
-# Reusable LP (from Phase 5)
+# Reusable LP (Fixed: Return S and shortage for table)
 def run_demo_lp(demand, buffer_pct):
     n = len(demand)
     prob = LpProblem("Demo_LP", LpMinimize)
@@ -37,10 +37,10 @@ def run_demo_lp(demand, buffer_pct):
     cost = value(prob.objective)
     avg_short = np.mean([value(shortage[t]) for t in range(n)])
     service = 1 - (avg_short / np.mean(demand))
-    return cost, service * 100
+    return cost, service * 100, [value(S[t]) for t in range(n)], [value(shortage[t]) for t in range(n)]
 
 # Run Sim
-cost, service = run_demo_lp(demand, buffer_mult)
+cost, service, opt_stock, opt_shortage = run_demo_lp(demand, buffer_mult)
 
 # Display Results
 st.header("Simulation Results")
@@ -48,15 +48,16 @@ col1, col2 = st.columns(2)
 col1.metric("Total Cost (₹)", f"{cost:,.0f}")
 col2.metric("Service Level (%)", f"{service:.1f}%")
 
-# Table
+# Table (Fixed: Use returned S/shortage)
+months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']
 results_df = pd.DataFrame({
-    'Month': ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+    'Month': months,
     'Demand': demand,
-    'Optimal Stock': [value(S[t]) for t in range(6)],  # From LP
-    'Shortage': [value(shortage[t]) for t in range(6)]
+    'Optimal Stock': opt_stock,
+    'Shortage': opt_shortage
 })
 st.table(results_df.round(0))
 
 # Rec
 st.header("Strategic Rec")
-st.write(f"For {demand_mult*100}% surge with {buffer_mult*100}% buffer: Cost {cost:,.0f} (vs. base {base_cost:,.0f}), service {service:.1f}%—recommend proactive buffering for 15% net savings.")
+st.write(f"For {demand_mult*100}% surge with {buffer_mult*100}% buffer: Cost {cost:,.0f} (vs. base ~30,000), service {service:.1f}%—recommend proactive buffering for 15% net savings.")
